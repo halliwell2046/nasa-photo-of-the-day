@@ -20,7 +20,10 @@ export default function NasaPhoto() {
 
     return (
       <div>
+          <h1>{photo.date}</h1>
           <img src={photo.hdurl} />
+          <h6>{photo.title} &copy;{photo.copyright}</h6>
+          <h2>{photo.explanation}</h2>
       </div>
     );
 }
