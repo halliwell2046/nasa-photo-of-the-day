@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Card, CardTitle, CardImg, CardBody, CardSubtitle, CardText, Col } from 'reactstrap';
 import axios from 'axios';
-import PhotoDis from './PhotoDis';
+
 
 
 export default function NasaPhoto() {
@@ -18,12 +19,28 @@ export default function NasaPhoto() {
         });
     }, []);
 
+    if (!photo) return (
+        <Col>
+            <Card >
+            <CardTitle>{photo.date}</CardTitle>
+            <CardSubtitle>{photo.title}</CardSubtitle>
+            <iframe src={photo.hdurl} alt={photo.title}/>
+            <CardSubtitle>{photo.title} &copy;{photo.copyright}</CardSubtitle>
+            <CardText>{photo.explanation}</CardText>
+            </Card>
+        </Col>
+    ) 
+
     return (
-      <div>
-          <h1>{photo.date}</h1>
-          <img src={photo.hdurl} />
-          <h6>{photo.title} &copy;{photo.copyright}</h6>
-          <h2>{photo.explanation}</h2>
-      </div>
+      <Col>
+        <Card >
+          <CardTitle >{photo.date}</CardTitle>
+          <CardImg src={photo.hdurl} alt={photo.title}/>
+         <CardBody>
+          <CardSubtitle>{photo.title} &copy;{photo.copyright}</CardSubtitle>
+          <CardText>{photo.explanation}</CardText>
+         </CardBody>
+        </Card>
+      </Col>
     );
 }
